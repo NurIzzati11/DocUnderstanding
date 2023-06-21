@@ -1,0 +1,15 @@
+pdfplumber
+docx
+pyplot
+numpy
+pandas
+re
+nltk
+gensim
+math
+gensim.downloader
+preprocess_string
+sklearn
+nltk.corpus
+haystack
+
