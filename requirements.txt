@@ -4,7 +4,7 @@ numpy
 pandas
 nltk
 gensim
-sklearn
+scikit-learn
 matplotlib
 haystack
 
