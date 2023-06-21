@@ -1,6 +1,5 @@
 pdfplumber
 docx
-pyplot
 numpy
 pandas
 re
