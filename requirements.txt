@@ -5,5 +5,6 @@ pandas
 nltk
 gensim
 sklearn
+matplotlib
 haystack
 
