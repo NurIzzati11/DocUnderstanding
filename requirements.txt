@@ -1,3 +1,4 @@
+farm-haystack
 pdfplumber
 python-docx
 numpy
@@ -6,6 +7,5 @@ nltk
 gensim
 scikit-learn
 matplotlib
-haystack
-haystack.document_store
+
 
