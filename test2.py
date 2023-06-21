@@ -15,7 +15,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 from nltk.corpus import stopwords
 from gensim.parsing.preprocessing import remove_stopwords
 import nltk
-nltk.download('punkt')
 from sklearn.metrics.pairwise import cosine_similarity
 from gensim.models import Word2Vec
 import gensim.downloader as api
