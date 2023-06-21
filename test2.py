@@ -2,13 +2,10 @@
 import streamlit as st
 import pdfplumber
 import docx
-from matplotlib import pyplot as plt
 import numpy 
 import pandas as pd
-import re
 import nltk
 import gensim
-import math
 import gensim.downloader
 from gensim.parsing.preprocessing import preprocess_string
 pd.set_option('display.max_colwidth', None)
