@@ -6,5 +6,5 @@ nltk
 gensim
 scikit-learn
 matplotlib
-haystack
+farm-haystack
 
