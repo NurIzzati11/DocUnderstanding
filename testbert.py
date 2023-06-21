@@ -61,58 +61,6 @@ def not_within_bboxes(obj):
         x0, top, x1, bottom = _bbox
         return (h_mid >= x0) and (h_mid < x1) and (v_mid >= top) and (v_mid < bottom)
     return not any(obj_in_bbox(__bbox) for __bbox in bboxes)
-#Clean the texts and other functions for Word2Vec
-def clean_sentence(sentence, stopwords=False):
-  sentence = sentence.lower().strip()
-  sentence = re.sub(r'[^a-z0-9\s]', '', sentence)
-  if stopwords:
-    sentence = remove_stopwords(sentence)
-  return sentence
-
-def get_cleaned_sentences(tokens, stopwords=False):
-  cleaned_sentences = []
-  for row in tokens:
-    cleaned = clean_sentence(row, stopwords)
-    cleaned_sentences.append(cleaned)
-  return cleaned_sentences
-
-def retrieveAndPrintFAQAnswer(question_embedding, sentence_embeddings, sentences):
-  max_sim = -1
-  index_sim = -1
-  for index, embedding in enumerate(sentence_embeddings):
-    sim = cosine_similarity(embedding, question_embedding)[0][0]
-    # print(index, sim, sentences[index])
-    if sim > max_sim:
-      max_sim = sim
-      index_sim = index
-  return index_sim
-
-def getWordVec(word, model):
-        samp = model['pc']
-        vec = [0]*len(samp)
-        try:
-            vec = model[word]
-        except:
-            vec = [0]*len(samp)
-        return (vec)
-
-
-def getPhraseEmbedding(phrase, embeddingmodel):
-  samp = getWordVec('computer', embeddingmodel)
-  vec = numpy.array([0]*len(samp))
-  den = 0;
-  for word in phrase.split():
-    den = den+1
-    vec = vec+numpy.array(getWordVec(word, embeddingmodel))
-  return vec.reshape(1, -1)
-
-#model import
-v2w_model = None
-try:
-    v2w_model = gensim.models.Keyedvectors.load('./w2vecmodel.mod')
-except:
-    v2w_model = api.load('word2vec-google-news-300')
-    v2w_model.save("./w2vecmodel.mod")
     
 #STREAMLIT
 st.markdown("<h1 style='text-align: center; color: white;'>DOCUMENT UNDERSTANDING ANALYZER</h1>", unsafe_allow_html=True)
@@ -132,8 +80,6 @@ st.write("Choose your models")
 c1,c2,c3,c4,c5=st.columns(5)
 with c1:
     bert=st.button("BERT")
-with c2:
-    w2v=st.button("Word2Vec")
     
 if bert==1:
     st.write("BERT Model answers")
@@ -154,23 +100,4 @@ if bert==1:
             df = df.append({'Rank': i+1, 'Answer': ans, 'Score': score}, ignore_index=True)
             #st.write("Answer " + str(i+1) + ": " + ans + " (Score: " + str(score) + ")")
         st.dataframe(df,hide_index=True)    
-
-if w2v==1:
-    ##WORD2VEC
-    st.write("Word2Vec Model answer")
-    with st.spinner("Searching. Please hold, this might take awhile..."):
-        tokens = nltk.sent_tokenize(text)
-        cleaned_sentences = get_cleaned_sentences(tokens, stopwords=True)
-        cleaned_sentences_with_stopwords = get_cleaned_sentences(tokens, stopwords=False)
-        sentences = cleaned_sentences_with_stopwords
-
-        sent_embeddings = []
-        for sent in sentences:
-            sent_embeddings.append(getPhraseEmbedding(sent, v2w_model))
-
-        question = clean_sentence(user_input, stopwords=False)
-        question_embedding = getPhraseEmbedding(question, v2w_model)
-        index = retrieveAndPrintFAQAnswer(question_embedding, sent_embeddings, cleaned_sentences_with_stopwords)
-        res_w2v = cleaned_sentences_with_stopwords[index]
-        st.write(res_w2v)
       
