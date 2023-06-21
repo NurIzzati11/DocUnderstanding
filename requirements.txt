@@ -1,4 +1,4 @@
-farm-haystack
+haystack
 pdfplumber
 python-docx
 numpy
