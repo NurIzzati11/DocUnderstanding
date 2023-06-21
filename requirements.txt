@@ -2,7 +2,6 @@ pdfplumber
 docx
 numpy
 pandas
-re
 nltk
 gensim
 math
