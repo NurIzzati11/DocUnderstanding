@@ -1,10 +1,9 @@
 pdfplumber
-docx
+python-docx
 numpy
 pandas
 nltk
 gensim
 sklearn
-PendingDeprecationWarning
 haystack
 
