@@ -5,9 +5,10 @@ import docx
 import numpy 
 import pandas as pd
 import nltk
+import re
 import gensim
 import gensim.downloader
-from gensim.parsing.preprocessing import preprocess_string
+##from gensim.parsing.preprocessing import preprocess_string
 pd.set_option('display.max_colwidth', None)
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neighbors import NearestNeighbors
@@ -15,6 +16,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from nltk.corpus import stopwords
 from gensim.parsing.preprocessing import remove_stopwords
 import nltk
+#nltk.download('punkt')
 from sklearn.metrics.pairwise import cosine_similarity
 from gensim.models import Word2Vec
 import gensim.downloader as api
