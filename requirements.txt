@@ -1,10 +1,10 @@
-haystack
+farm-haystack
 pdfplumber
 python-docx
 numpy
 pandas
 nltk
 gensim
-sklearn
+scikit-learn
 
 
