@@ -5,6 +5,5 @@ pandas
 nltk
 gensim
 sklearn
-nltk.corpus
 haystack
 
