@@ -93,7 +93,7 @@ if bert==1:
         pipe = ExtractiveQAPipeline(reader, retriever)
         res_br = pipe.run(query=user_input, params={"Retriever": {"top_k": 5},"Reader": {"top_k": 5}})
         st.write("Here are the top 3 answers")
-        df = pd.DataFrame(columns=['Number', 'Answer', 'Score'])
+        df = pd.DataFrame(columns=['Rank', 'Answer', 'Score'])
         for i in range(0,3):
             ans=res_br['answers'][i].answer
             score=res_br['answers'][i].score
