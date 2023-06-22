@@ -97,7 +97,7 @@ if bert==1:
         for i in range(0,3):
             ans=res_br['answers'][i].answer
             score=res_br['answers'][i].score
-            df = pd.concat([df, pd.DataFrame({'Rank': i+1, 'Answer': ans, 'Score': score})], ignore_index=True)
+            df = pd.concat([df, pd.DataFrame({'Rank': [i+1], 'Answer': [ans], 'Score': [score]})], ignore_index=True)
             #df = df.concat({'Rank': i+1, 'Answer': ans, 'Score': score}, ignore_index=True)
             #st.write("Answer " + str(i+1) + ": " + ans + " (Score: " + str(score) + ")")
         st.dataframe(df,hide_index=True)    
